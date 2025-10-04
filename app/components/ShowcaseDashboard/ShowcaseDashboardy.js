@@ -28,10 +28,10 @@ const ShowcaseDashboard = () => {
     return (
         <div>
         <Navbar/>
-        <div className="min-h-screen bg-gray-50 font-sans">
+        <div className="min-h-screen bg-yellow-50 font-sans">
             <div className="max-w-7xl mx-auto px-4 pt-8 pb-32">
                 {/* Showcase Header/Hero Section (Light Yellow Background) */}
-                <div className="bg-yellow-50 bg-opacity-80 rounded-3xl shadow-xl p-8 md:p-16 text-center mb-12 border border-yellow-200">
+                <div className="bg-yellow-50 bg-opacity-80 p-8 md:p-16 text-center mb-12">
                     <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-4 leading-tight">
                         <span className="text-orange-500">Showcase</span> Gallery
                     </h1>
