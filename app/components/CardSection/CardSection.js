@@ -1,5 +1,5 @@
 import React from 'react'
-import ImageGeneratorInterface from '../src/ImageGeneratorInterface'
+import ImageGeneratorInterface from '../ImageGenerator/ImageGeneratorInterface'
 
 const CardSection = () => {
   return (

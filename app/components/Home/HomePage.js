@@ -2,18 +2,15 @@
 
 import React, { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
-import Image from 'next/image';
 import CardSection from '../CardSection/CardSection';
 
 
 const HomePage = () => {
-  const [activeTab, setActiveTab] = useState('textToImage');
-
   return (
     <div className=' bg-yellow-50'>
       <Navbar />
       <div className='p-5 gap-10 flex flex-col items-center justify-center text-center mt-10'>
-        <h1 className='text-3xl font-bold text-orange-500'>Fire Dragon Image Editor</h1>
+        <h1 className='text-3xl font-bold text-orange-500'>Nano Banana Image Editor</h1>
         <p className='text-lg px-10 text-gray-600'>
           Transform your images with the power of natural language. Simply describe <br />
           what you want, and watch the magic happen.
