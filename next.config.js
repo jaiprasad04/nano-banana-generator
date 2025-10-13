@@ -1,5 +1,14 @@
-module.exports = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
-    domains: ['www.google.com', 'placehold.co'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.muapi.ai',
+        pathname: '/**',
+      },
+    ],
   },
-}
+};
+
+export default nextConfig;

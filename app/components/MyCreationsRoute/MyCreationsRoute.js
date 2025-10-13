@@ -42,7 +42,7 @@ const MyCreationsRoute = () => {
         </div>
       </div>
         <footer className='w-full text-center p-5 bg-gray-900 text-white'>
-        &copy; {new Date().getFullYear()} Fire Dragon Image Editor. All rights reserved.
+        &copy; {new Date().getFullYear()} Nano Banana Image Editor. All rights reserved.
         <div className="mt-2">
           <a href="#" className="text-white hover:text-gray-400 mx-2">Privacy Policy</a> |
           <a href="#" className="text-white hover:text-gray-400 mx-2">Terms of Service</a> |

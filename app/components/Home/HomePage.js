@@ -5,6 +5,7 @@ import Navbar from '../Navbar/Navbar';
 import Image from 'next/image';
 import CardSection from '../CardSection/CardSection';
 
+
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState('textToImage');
 
@@ -17,13 +18,6 @@ const HomePage = () => {
           Transform your images with the power of natural language. Simply describe <br />
           what you want, and watch the magic happen.
         </p>
-        <Image
-          src='/image.jpg'
-          alt='Home Illustration'
-          width={200}
-          height={100}
-          className='rounded-lg shadow-lg'
-        />
       </div>
       <CardSection />
       {/*Tips Section */}
@@ -41,7 +35,7 @@ const HomePage = () => {
         </div>
       </div>
       <footer className='w-full text-center p-5 bg-gray-900 text-white mt-10'>
-        &copy; {new Date().getFullYear()} Fire Dragon Image Editor. All rights reserved.
+        &copy; {new Date().getFullYear()} Nano Banana Image Editor. All rights reserved.
         <div className="mt-2">
           <a href="#" className="text-white hover:text-gray-400 mx-2">Privacy Policy</a> |
           <a href="#" className="text-white hover:text-gray-400 mx-2">Terms of Service</a> |
