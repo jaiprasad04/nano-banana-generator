@@ -7,10 +7,6 @@ import Link from 'next/link';
 const Navbar = (activeLink) => {
   const navItems = ["Image Editor", "My Creations", "Showcase", "Pricing"];
 
-  function NavigateHome(){
-    window.location.href = '/Home';
-  }
-
   return (
     <header className="sticky top-0 z-10 w-full bg-white bg-opacity-95 backdrop-blur-sm border-b border-gray-100">
     <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -18,7 +14,7 @@ const Navbar = (activeLink) => {
       <div className="flex items-center space-x-2">
         <div className="w-6 h-6 bg-yellow-400 rounded-full" />
         <span className="text-xl font-extrabold text-gray-900">
-          Nano Banana <span className="text-orange-500">Biz</span>
+         <Link href="/">Nano Banana <span className="text-orange-500">Biz</span></Link>
         </span>
       </div>
 
@@ -38,7 +34,7 @@ const Navbar = (activeLink) => {
         <Link href={"/"} className="hover:text-orange-500 transition-colors text-gray-600 font-semibold">Image Editor</Link>
         <Link href={"/MyCreations"} className="hover:text-orange-500 transition-colors text-gray-600">My Creations</Link>
         <Link href={"/Showcase"} className="hover:text-orange-500 transition-colors text-gray-600">Showcase</Link>
-        <Link href={"/Pricing"} className="hover:text-orange-500 transition-colors text-gray-600">Pricing</Link>
+        {/* <Link href={"/Pricing"} className="hover:text-orange-500 transition-colors text-gray-600">Pricing</Link> */}
       </nav>
 
       {/* Auth Buttons */}

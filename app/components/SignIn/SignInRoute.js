@@ -21,7 +21,7 @@ const SignInPage = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50 pt-16">
+        <div className="min-h-screen flex items-center justify-center bg-yellow-50 pt-16">
             <div className="w-full max-w-md bg-white p-8 md:p-12 rounded-3xl shadow-2xl shadow-gray-200 border border-gray-100 transform transition-all">
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
@@ -89,14 +89,6 @@ const SignInPage = () => {
                         onClick={handleGoogleSignIn}
                         className="w-full flex items-center justify-center py-3 px-4 border border-gray-300 rounded-xl shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors"
                     >
-                        <Image 
-                            src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" 
-                            height={20}
-                            width={60}
-                            alt="Google" 
-                            className="w-5 h-5 mr-3" 
-                            onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/20x20/ffffff/374151?text=G"; }}
-                        />
                         Sign in with Google
                     </button>
                 </div>

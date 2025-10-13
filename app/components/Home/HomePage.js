@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
-import CardSection from '../CardSection/CardSection';
+import ImageGeneratorInterface from '../ImageGenerator/ImageGeneratorInterface';
 
 
 const HomePage = () => {
@@ -16,7 +16,7 @@ const HomePage = () => {
           what you want, and watch the magic happen.
         </p>
       </div>
-      <CardSection />
+      <ImageGeneratorInterface />
       {/*Tips Section */}
       <div className='w-full max-w-5xl mx-auto p-5 md:p-10 bg-white rounded-lg shadow-2xl shadow-gray-100 border border-orange-400 mb-10 flex flex-col items-center'>
         <div className='w-full text-center'>

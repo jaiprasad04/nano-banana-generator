@@ -88,11 +88,13 @@ const SignUP = () => {
           onClick={handleGoogleSignUp}
           className="w-full flex items-center justify-center gap-2 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
         >
-          <Image
+          {/* <Image
             src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
             alt="Google"
             className="h-5 w-5"
-          />
+            height={200}
+            width={200}
+          /> */}
           <span className="text-gray-700 font-medium">Sign up with Google</span>
         </button>
         <p className="mt-6 text-sm text-gray-500 text-center">
