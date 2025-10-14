@@ -27,7 +27,7 @@ const ImageGeneratorInterface = () => {
     setLastError(null);
     setIsGenerating(true);
 
-    // Get API key from environment variable
+    // Get API key from environment variable (used with /muapi rewrite)
     const API_KEY = process.env.NEXT_PUBLIC_MUI_API_KEY;
     if (!API_KEY) {
       setLastError('API key is missing. Please set NEXT_PUBLIC_MUI_API_KEY in your environment.');
@@ -35,8 +35,10 @@ const ImageGeneratorInterface = () => {
       return;
     }
 
+    console.log("Hello from MuApi");
+
     if (currentTab === 'text-to-image') {
-      const url = 'https://api.muapi.ai/api/v1/nano-banana';
+      const url = '/muapi/api/v1/nano-banana';
       const headers = {
         'Content-Type': 'application/json',
         'x-api-key': API_KEY,
@@ -46,14 +48,16 @@ const ImageGeneratorInterface = () => {
         aspect_ratio: "1:1"
       };
 
+
       try {
         const begin = Date.now();
         const submitResponse = await axios.post(url, payload, { headers });
 
         if (submitResponse.status === 200) {
           const requestId = submitResponse.data.request_id;
-          const resultUrl = `https://api.muapi.ai/api/v1/predictions/${requestId}/result`;
+          const resultUrl = `/muapi/api/v1/predictions/${requestId}/result`;
           const pollHeaders = { 'x-api-key': API_KEY };
+          console.log(`Generation started. Request ID: ${requestId}`);
 
           // Poll for the result
           while (true) {
@@ -61,38 +65,48 @@ const ImageGeneratorInterface = () => {
 
             if (pollResponse.status === 200) {
               const status = pollResponse.data.status;
+              console.log(`Polling status: ${status}`);
 
               if (status === 'completed') {
                 const end = Date.now();
                 const imageUrl = pollResponse.data.outputs[0];
                 if (imageUrl) {
                   setFinalImage(imageUrl);
+                  console.log(`Generation completed in ${(end - begin) / 1000} seconds. Image URL: ${imageUrl}`);
                 } else {
                   setLastError("Generation completed but no image URL was returned.");
+                  console.error("No image URL returned.");
                 }
                 break;
               } else if (status === 'failed') {
                 setLastError(`Generation failed: ${pollResponse.data.error || 'Unknown error.'}`);
+                console.error(`Generation failed: ${pollResponse.data.error || 'Unknown error.'}`);
                 break;
               } else {
                 await new Promise(resolve => setTimeout(resolve, 1000));
+                // console.log("Still generating...");
               }
             } else {
               setLastError(`Polling failed: ${pollResponse.data.error || pollResponse.statusText}`);
+              console.error(`Polling error: ${pollResponse.data.error || pollResponse.statusText}`);
               break;
             }
           }
         } else {
           setLastError(`Submission failed: ${submitResponse.data?.error || submitResponse.statusText}`);
+          console.error(`Submission error: ${submitResponse.data?.error || submitResponse.statusText}`);
         }
       } catch (error) {
         if (error.response && error.response.status === 403) {
           setLastError('Request failed: 403 Forbidden. Check your API key and permissions.');
+          console.error('403 Forbidden error. Check API key and permissions.');
         } else {
           setLastError(`Request failed: ${error.message}. Check console for details.`);
+          console.error('Request error:', error);
         }
       } finally {
         setIsGenerating(false);
+        console.log("Generation process ended.");
       }
     } 
     else
@@ -105,7 +119,7 @@ const ImageGeneratorInterface = () => {
       }
       console.log("Hello from MuApi")
 
-      const url = 'https://api.muapi.ai/api/v1/midjourney-v7-image-to-image';
+      const url = '/muapi/api/v1/midjourney-v7-image-to-image';
       const headers = {
         'Content-Type': 'application/json',
         'x-api-key': API_KEY,
@@ -128,7 +142,7 @@ const ImageGeneratorInterface = () => {
           const requestId = response.data.request_id;
           console.log(`Task submitted successfully. Request ID: ${requestId}`);
 
-          const resultUrl = `https://api.muapi.ai/api/v1/predictions/${requestId}/result`;
+          const resultUrl = `/muapi/api/v1/predictions/${requestId}/result`;
           const pollHeaders = { 'x-api-key': API_KEY };
 
           while (true) {

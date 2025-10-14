@@ -27,7 +27,7 @@ Nano Banana is an AI-powered image generation web application that allows users 
 
 3. Create a `.env` file in the project root and add your API key:  
    ```
-   NEXT_PUBLIC_MUI_API_KEY=your_api_key_here
+   MUAPI_API_KEY=your_api_key_here
    ```
 
 4. Run the development server  
