@@ -234,7 +234,7 @@ export default function Home() {
       <aside className="w-80 md:w-96 border-r border-slate-200 bg-white flex flex-col shrink-0 h-full overflow-y-auto custom-scrollbar">
         <div className="p-6 border-b border-slate-200 space-y-6">
           <div className="flex flex-col gap-2">
-            <h2 className="text-lg font-semibold tracking-tight">
+            <h2 className="text-lg font-semibold tracking-tight text-black">
               ENGINE CORE
             </h2>
             <p className="text-[10px] text-slate-500 font-medium uppercase tracking-[0.2em]">
@@ -291,7 +291,7 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1 }}
               className="space-y-4"
             >
-              <label className="text-xs font-medium text-zinc-200 flex items-center gap-2">
+              <label className="text-xs font-medium text-slate-700 flex items-center gap-2">
                 <div className="w-1 h-1 bg-indigo-500 rounded-full" /> Reference
                 Images ({imagesList.length}/14)
               </label>
@@ -356,7 +356,7 @@ export default function Home() {
 
           {/* Aspect Ratio */}
           <div className="space-y-3" ref={ratioRef}>
-            <label className="text-xs font-medium text-zinc-200 flex items-center gap-2">
+            <label className="text-xs font-medium text-slate-700 flex items-center gap-2">
               <div className="w-1 h-1 bg-indigo-500 rounded-full" /> Aspect
               Ratio
             </label>
@@ -392,7 +392,7 @@ export default function Home() {
                         className={`w-full text-left p-3 rounded-lg text-[10px] font-bold transition-all flex items-center gap-3 ${
                           aspectRatio.value === ratio.value
                             ? "bg-indigo-500 text-white"
-                            : "text-zinc-400 hover:bg-white/5 hover:text-white"
+                            : "text-zinc-400 hover:bg-white/5 hover:text-black"
                         }`}
                       >
                         <div
@@ -409,7 +409,7 @@ export default function Home() {
 
           {/* Tiered Resolution */}
           <div className="space-y-3">
-            <label className="text-xs font-medium text-zinc-200 flex items-center gap-2">
+            <label className="text-xs font-medium text-slate-700 flex items-center gap-2">
               <div className="w-1 h-1 bg-indigo-500 rounded-full" /> Resolution
             </label>
             <div className="flex gap-2">
@@ -438,7 +438,7 @@ export default function Home() {
 
           {/* Google Search */}
           <div className="space-y-3">
-            <label className="text-xs font-medium text-zinc-200 flex items-center gap-2">
+            <label className="text-xs font-medium text-slate-700 flex items-center gap-2">
               <div className="w-1 h-1 bg-indigo-500 rounded-full" /> Google
               Search
             </label>

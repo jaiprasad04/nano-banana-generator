@@ -64,7 +64,7 @@ export default function CreationsPage() {
             Historical Archive
           </span>
         </div>
-        <h1 className="text-3xl md:text-5xl font-semibold tracking-tight">
+        <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-black">
           MY CREATIONS
         </h1>
         <p className="text-zinc-500 font-medium text-xs uppercase tracking-widest leading-loose max-w-xl">
@@ -134,7 +134,7 @@ export default function CreationsPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[1000] bg-white/10 backdrop-blur-sm p-6 md:p-12 flex flex-col items-center justify-center"
+            className="fixed inset-0 z-[1000] bg-black/50 backdrop-blur-sm p-6 md:p-12 flex flex-col items-center justify-center"
             onClick={() => setSelectedImage(null)}
           >
             <motion.div

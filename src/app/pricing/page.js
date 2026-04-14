@@ -187,9 +187,9 @@ export default function PricingPage() {
           <div className="text-[10px] font-semibold tracking-[0.4em] text-zinc-500 uppercase">
             Kinetic Stats
           </div>
-          <div className="text-lg font-medium flex items-center gap-3">
+          <div className="text-lg font-medium flex items-center gap-3 text-gray-700">
             Currently Holding:{" "}
-            <span className="text-white font-semibold">
+            <span className="text-black font-semibold">
               {session?.user?.credits || 0} Credits
             </span>
           </div>
