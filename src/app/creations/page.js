@@ -99,7 +99,7 @@ export default function CreationsPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  className="group relative rounded-xl bg-white/5 border border-white/5 aspect-square cursor-pointer"
+                  className="group relative rounded-xl bg-white/5 border border-white/5 aspect-square cursor-pointer overflow-hidden"
                   onClick={() => setSelectedImage(item)}
                 >
                   <img
