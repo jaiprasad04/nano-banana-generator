@@ -1,6 +1,6 @@
 # 🚀 Nano Banana Generator
 
-**Live Demo:** [https://nano-banana-generate-eta.vercel.app](https://nano-banana-generate-eta.vercel.app)
+**Live Demo:** [https://nano-banana-generater.vercel.app](https://nano-banana-generater.vercel.app)
 
 This is a **high-performance, modular AI generation engine** designed for single-click Vercel deployments. It decouples core business logic (Auth, Payments, Credits) from the UI, allowing you to build and ship multiple AI templates rapidly.
 
