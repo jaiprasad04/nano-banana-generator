@@ -13,8 +13,7 @@ export async function GET() {
   try {
     const creations = await prisma.creation.findMany({
       where: { 
-        userId: session.user.id,
-        status: "completed" 
+        userId: session.user.id
       },
       orderBy: { createdAt: "desc" },
     });

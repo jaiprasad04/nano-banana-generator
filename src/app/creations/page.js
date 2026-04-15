@@ -102,11 +102,25 @@ export default function CreationsPage() {
                   className="group relative rounded-xl bg-glass-bg backdrop-blur-3xl border border-glass-border aspect-square cursor-pointer overflow-hidden shadow-sm hover:shadow-md transition-shadow transition-all"
                   onClick={() => setSelectedImage(item)}
                 >
-                  <img
-                    src={item.imageUrl}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    alt={item.prompt}
-                  />
+                  {item.status === "completed" ? (
+                    <img
+                      src={item.imageUrl}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      alt={item.prompt}
+                    />
+                  ) : item.status === "failed" ? (
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-red-500/10 gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center text-red-500 text-sm">
+                        ✕
+                      </div>
+                      <span className="text-[10px] font-black text-red-500 uppercase tracking-widest leading-none">Failed</span>
+                    </div>
+                  ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-glass-hover gap-4">
+                      <div className="w-8 h-8 border-2 border-primary-500/30 border-t-primary-500 rounded-full animate-spin" />
+                      <span className="text-[9px] font-black text-muted uppercase tracking-[0.2em] animate-pulse">Manifesting...</span>
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 p-4 flex flex-col justify-end">
                     <p className="text-white text-xs font-semibold tracking-tight truncate mb-1">
                       {item.prompt}
@@ -145,11 +159,36 @@ export default function CreationsPage() {
             >
               {/* Image Side */}
               <div className="flex w-full md:w-[50%] h-[50%] md:h-full p-2 bg-glass-bg backdrop-blur-3xl flex border-b md:border-b-0 md:border-r border-glass-border">
-                <img
-                  src={selectedImage.imageUrl}
-                  className="h-full w-full object-contain"
-                  alt="Creation"
-                />
+                {selectedImage.status === "completed" ? (
+                  <img
+                    src={selectedImage.imageUrl}
+                    className="h-full w-full object-contain"
+                    alt="Creation"
+                  />
+                ) : selectedImage.status === "failed" ? (
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-red-500/5 gap-4">
+                    <div className="w-16 h-16 rounded-2xl bg-red-500/10 flex items-center justify-center text-red-500 text-2xl">
+                      ✕
+                    </div>
+                    <div className="text-center space-y-2">
+                      <h3 className="text-sm font-bold text-red-500 uppercase tracking-widest">Generation Failed</h3>
+                      <p className="text-xs text-muted max-w-xs">{selectedImage.error || "An unknown error occurred during manifestation."}</p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-glass-hover gap-6">
+                    <div className="relative">
+                      <div className="w-20 h-20 border-4 border-primary-500/10 border-t-primary-500 rounded-full animate-spin" />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <FaMagic className="text-primary-500/30 text-xl animate-pulse" />
+                      </div>
+                    </div>
+                    <div className="text-center space-y-2">
+                      <h3 className="text-sm font-black text-muted uppercase tracking-[0.3em] animate-pulse">Generating...</h3>
+                      <p className="text-[10px] text-muted italic">Sifting through digital entropy...</p>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Details Side */}
@@ -194,19 +233,24 @@ export default function CreationsPage() {
                 <div className="pt-12">
                   <button
                     onClick={async () => {
+                      if (selectedImage.status !== "completed") return;
                       setDownloading(true);
                       await downloadImage(selectedImage.imageUrl, `nano-banana-${selectedImage.id}.jpg`);
                       setDownloading(false);
                     }}
-                    disabled={downloading}
+                    disabled={downloading || selectedImage.status !== "completed"}
                     className="w-full py-3 bg-gradient-to-r from-primary-600 to-primary-500 text-white rounded-lg font-bold tracking-wider uppercase text-xs flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 shadow-xl shadow-primary-500/20 border border-primary-400/50"
                   >
                     {downloading ? (
-                      <div className="w-3 h-3 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                      <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
                     ) : (
                       <FiDownload size={16} />
                     )}
-                    {downloading ? "Extracting..." : "Download Piece"}
+                    {selectedImage.status === "completed" 
+                      ? (downloading ? "Extracting..." : "Download Piece")
+                      : selectedImage.status === "failed" 
+                        ? "Generation Failed" 
+                        : "Generating..."}
                   </button>
                 </div>
               </div>

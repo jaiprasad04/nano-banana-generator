@@ -17,7 +17,7 @@ export const AIService = {
       case "2k": return 18;
       case "4k": return 24;
       case "1k":
-      default: return 12;
+      default: return 1;
     }
   },
 
