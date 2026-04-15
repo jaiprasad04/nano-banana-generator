@@ -230,8 +230,8 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-1 h-full w-full">
-      <aside className="w-80 md:w-96 border-r border-slate-200 bg-white flex flex-col shrink-0 h-full overflow-y-auto custom-scrollbar">
+    <div className="flex flex-col-reverse lg:flex-row flex-1 h-full w-full overflow-y-auto lg:overflow-hidden">
+      <aside className="w-full lg:w-96 border-t lg:border-t-0 lg:border-r border-slate-200 bg-white flex flex-col shrink-0 h-auto lg:h-full lg:overflow-y-auto custom-scrollbar">
         <div className="p-6 border-b border-slate-200 space-y-6">
           <div className="flex flex-col gap-2">
             <h2 className="text-lg font-semibold tracking-tight text-black">
@@ -490,7 +490,7 @@ export default function Home() {
       </aside>
 
       {/* Main Canvas */}
-      <main className="flex-1 relative flex flex-col bg-slate-50 overflow-hidden">
+      <main className="flex-1 relative flex flex-col bg-slate-50 overflow-hidden min-h-[50vh] lg:min-h-0 shrink-0">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-[50%] h-[50%] bg-indigo-500/10 rounded-full blur-[120px] animate-pulse" />
           <div className="absolute bottom-1/4 right-1/4 w-[40%] h-[40%] bg-purple-500/10 rounded-full blur-[100px]" />

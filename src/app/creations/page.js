@@ -56,8 +56,8 @@ export default function CreationsPage() {
   }
 
   return (
-    <div className="flex-1 bg-slate-50 overflow-y-auto custom-scrollbar p-8 md:p-12">
-      <header className="max-w-7xl mx-auto mb-10 space-y-3">
+    <div className="flex-1 bg-slate-50 overflow-y-auto custom-scrollbar p-4 md:p-12">
+      <header className="max-w-7xl mx-auto mb-10 space-y-3 pt-4 md:pt-0">
         <div className="flex items-center gap-3 text-indigo-500 mb-1">
           <FaCalendarAlt className="text-sm" />
           <span className="text-[10px] font-semibold uppercase tracking-[0.4em]">
@@ -134,7 +134,7 @@ export default function CreationsPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[1000] bg-black/50 backdrop-blur-sm p-6 md:p-12 flex flex-col items-center justify-center"
+            className="fixed inset-0 z-[1000] bg-black/50 backdrop-blur-sm p-4 md:p-12 flex flex-col items-center justify-center"
             onClick={() => setSelectedImage(null)}
           >
             <motion.div
@@ -144,7 +144,7 @@ export default function CreationsPage() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Image Side */}
-              <div className="flex w-full md:w-[50%] h-[50%] md:h-full p-2 bg-slate-100 flex border-r border-slate-200">
+              <div className="flex w-full md:w-[50%] h-[50%] md:h-full p-2 bg-slate-100 flex border-b md:border-b-0 md:border-r border-slate-200">
                 <img
                   src={selectedImage.imageUrl}
                   className="h-full w-full object-contain"

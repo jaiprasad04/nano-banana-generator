@@ -76,8 +76,8 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="flex-1 bg-slate-50 overflow-y-auto custom-scrollbar p-8 md:p-12">
-      <header className="max-w-7xl mx-auto mb-16 text-center space-y-4">
+    <div className="flex-1 bg-slate-50 overflow-y-auto custom-scrollbar p-4 md:p-12">
+      <header className="max-w-7xl mx-auto mb-16 text-center space-y-4 pt-4 md:pt-0">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[10px] font-semibold tracking-[0.4em] uppercase">
           Fuel your manifestation
         </div>
@@ -182,7 +182,7 @@ export default function PricingPage() {
       </div>
 
       {/* Credit Counter Hook */}
-      <footer className="max-w-7xl mx-auto py-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8">
+      <footer className="max-w-7xl mx-auto py-12 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="space-y-2 text-center md:text-left">
           <div className="text-[10px] font-semibold tracking-[0.4em] text-zinc-500 uppercase">
             Kinetic Stats
@@ -194,9 +194,9 @@ export default function PricingPage() {
             </span>
           </div>
         </div>
-        <div className="flex items-center gap-4 text-zinc-400 text-[10px] font-semibold uppercase tracking-widest">
-          <FaStar className="text-yellow-500/30" /> Secure Encryption via Stripe{" "}
-          <FaStar className="text-yellow-500/30" />
+        <div className="flex flex-wrap items-center justify-center gap-4 text-zinc-400 text-[10px] font-semibold uppercase tracking-widest text-center">
+          <FaStar className="text-yellow-500/30 hidden sm:block" /> Secure Encryption via Stripe{" "}
+          <FaStar className="text-yellow-500/30 hidden sm:block" />
         </div>
       </footer>
 

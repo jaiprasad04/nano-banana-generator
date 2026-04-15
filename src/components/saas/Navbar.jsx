@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
-import { FaCoins, FaUser, FaSignOutAlt, FaChevronDown, FaRocket } from "react-icons/fa";
+import { FaCoins, FaUser, FaSignOutAlt, FaChevronDown, FaRocket, FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LoginButton } from "./AuthButtons";
@@ -12,6 +12,7 @@ export function Navbar() {
   const { data: session, status } = useSession();
   const pathname = usePathname();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
     { name: "Image Editor", href: "/" },
@@ -20,7 +21,7 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="h-20 border-b border-slate-200 bg-white backdrop-blur-xl sticky top-0 z-[100] px-6 md:px-12 flex items-center justify-between">
+    <nav className="h-20 border-b border-slate-200 bg-white backdrop-blur-xl sticky top-0 z-[100] px-4 md:px-12 flex items-center justify-between">
       {/* Logo Section */}
       <Link href="/" className="flex items-center gap-3 group">
         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform">
@@ -110,7 +111,68 @@ export function Navbar() {
         ) : (
           <LoginButton className="!h-10 !px-6 !text-[10px] !tracking-widest !font-bold" />
         )}
+        
+        {/* Mobile menu toggle */}
+        <button 
+          className="md:hidden ml-2 p-2 text-slate-500 hover:text-slate-900 transition-colors"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
+        </button>
       </div>
+
+      {/* Mobile Nav Dropdown */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute top-20 left-0 right-0 bg-white border-b border-slate-200 shadow-2xl flex flex-col md:hidden z-50 p-4 gap-2"
+          >
+            {navLinks.map((link) => {
+              if (!session && link.href === "/creations") return null;
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`p-4 rounded-xl font-semibold text-sm transition-all ${
+                    isActive 
+                      ? "bg-indigo-50 text-indigo-600" 
+                      : "text-slate-600 hover:bg-slate-50"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+            
+            {/* Mobile Credits Display */}
+            {session && (
+              <div className="mt-2 p-4 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-yellow-100 flex items-center justify-center">
+                    <FaCoins className="text-yellow-600 text-sm" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Balance</span>
+                    <span className="text-sm font-black text-slate-900">{session.user.credits} Credits</span>
+                  </div>
+                </div>
+                <Link 
+                  href="/pricing"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="px-4 py-2 bg-slate-900 text-white rounded-lg text-xs font-bold transition-all hover:bg-black"
+                >
+                  Top Up
+                </Link>
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
