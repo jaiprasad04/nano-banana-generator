@@ -1,51 +1,141 @@
-# 🚀 Nano Banana Generator
+# 🚀 Nano Banana Generator — High-Octane AI Web Application
 
-**Live Demo:** [https://nano-banana-generator-psi.vercel.app](https://nano-banana-generator-psi.vercel.app)
+> **A beautifully designed, fully-integrated AI image studio.** Built with Next.js, this open-source template serves as a complete, self-contained SaaS boilerplate for generating, editing, and managing high-quality AI imagery fueled by the Nano Banana engine.
 
-This is a **high-performance, modular AI generation engine** designed for single-click Vercel deployments. It decouples core business logic (Auth, Payments, Credits) from the UI, allowing you to build and ship multiple AI templates rapidly.
+## 🌐 Try the Live Engine
 
-## 🛠️ Modular Architecture
+**Hosted Demo:** [nano-banana-generator-psi.vercel.app](https://nano-banana-generator-psi.vercel.app)
 
-The template is organized into a **Service Layer** architecture to ensure re-usability:
+Experience the full glassmorphic, responsive interface. Sign in with Google to explore the Generation Studio, Edit Mode, and Credit Tiers directly from your browser.
 
-- **`src/lib/config.js`**: Single source of truth for all environment variables.
-- **`src/lib/services/`**: Concentrated business logic.
-  - `user.js`: Manages user profiles and credit balances.
-  - `billing.js`: Handles Stripe Checkout and Webhook fulfillment.
-  - `ai.js`: Manages AI model logic (Nano Banana). Swap this out for OpenAI/Replicate in seconds.
-- **`src/components/saas/`**: Reusable UI components like `LoginButton`, `SignOutButton`, and `CreditBadge`.
+---
 
-## 🚀 One-Click Deployment
+Nano Banana Generator is not just another wrapper — it's a production-ready, highly-optimized AI web application. Out of the box, it seamlessly manages User Authentication, Credits & Billing, Image Persistence, and asynchronous AI generation polling using a sleek Next.js (App Router) architecture. It empowers you to build professional-grade AI workflows with built-in mobile optimization, making it the perfect starting point for your next AI SaaS.
 
-Deploy your own instance directly to Vercel. Provide your keys during the deployment process.
+**Why use Nano Banana Generator?**
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_GITHUB_USER/nano-banana-template&env=GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,STRIPE_SECRET_KEY,NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,STRIPE_WEBHOOK_SECRET,NANO_BANANA_API_KEY,NEXTAUTH_SECRET,DATABASE_URL,DIRECT_URL)
+- **Production-Ready SaaS** — Complete with Google OAuth and Stripe Checkout workflows built-in.
+- **Dual-Mode Studio** — Seamlessly toggle between prompt-based Text-to-Image generation and Multi-Image Reference editing.
+- **Historical Archive** — All creations are securely persisted to a PostgreSQL database for a customized user gallery.
+- **Responsive UX** — Dynamic sliding dropdowns, micro-animations, and complete mobile-stacked responsiveness.
+- **Extensible API** — Easily swap out the underlying AI engine without breaking the application UI.
 
-> **Pro Tip:** Fork this repo, replace `YOUR_GITHUB_USER` in the link above, and you have your own white-label SaaS deployment button.
+![Nano Banana Studio](https://cdn.muapi.ai/data/2/874086171651/Screenshot_2026-04-15_103743.png)
 
-## 🔑 Required Environment Variables
+## ✨ Core Features
 
-| Service         | Variables                                                                          |
-| --------------- | ---------------------------------------------------------------------------------- |
-| **Google Auth** | `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`                                         |
-| **Stripe**      | `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_WEBHOOK_SECRET` |
-| **Database**    | `DATABASE_URL` (Postgres)                                                          |
-| **AI (Banana)** | `NANO_BANANA_API_KEY`                                                              |
-| **NextAuth**    | `NEXTAUTH_SECRET`, `NEXTAUTH_URL`                                                  |
+- **Kinetic Image Studio** — Generate stunning visuals with text prompts. Includes options for advanced `Aspect Ratio` tuning (from 1:1 Square to 21:9 UltraWide), and tiered Resolutions (1K, 2K, 4K) tied directly to a flexible credit cost system.
+- **Multi-Image Edit Mode** — Transition smoothly to editing. Upload local images or add up to 14 external image URLs to use as visual reference nodes for complex prompt configurations.
+- **Smart Google Search Integration** — Toggle "Smart Search" on to empower validations or enhancements for prompts prior to manifestation.
+- **My Creations Archive** — A dedicated history vault for logged-in users. Displays past generations securely fetched from the database, viewable in a detailed inspector modal with 1-click downloads.
+- **Credit Tiers & Billing** — Complete Stripe integration. Start users off with a seed balance, map generations to credit deductions, and seamlessly route them to an interactive pricing page to purchase scalable tiers (Starter, Power Engine, Quantum Flow).
+- **Beautiful & Dynamic UI** — Built on Tailwind CSS and Framer Motion, ensuring every state transition, loading spinner, and dropdown elegantly guides the user.
 
-## 💻 Local Development
+---
 
-1. **Setup Env**: Copy `.env.example` to `.env` and add your keys.
-2. **Install**: `npm install`
-3. **Database**: `npx prisma generate` followed by `npx prisma db push`.
-4. **Run**: `npm run dev`
+## ⚡ Deployment: Vercel & Production
 
-Open [http://localhost:3000](http://localhost:3000).
+Deploying an instance of Nano Banana Generator to the web requires minimal configuration. The architecture is engineered explicitly for **Vercel** serverless environments.
 
-## 🧩 Building New Templates
+### One-Click Deploy
 
-To build a new template:
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/SamurAIGPT/nano-banana-generator)
 
-1. Keep the `src/lib/services` and `src/app/api` folders.
-2. Update the UI in `src/app/page.js` using the reusable components in `src/components/saas`.
-3. If you want to change the AI provider, simply update `src/lib/services/ai.js`.
+> **Pro Tip:** Fork this repository, replace `YOUR_GITHUB_USER` in the link above, to streamline deployments for your private forks.
+
+### 🔑 Required Environment Variables
+
+To successfully deploy and run, you must populate the following environment variables in your Vercel project settings:
+
+| Service               | Variable                             | Description                                                  |
+| :-------------------- | :----------------------------------- | :----------------------------------------------------------- |
+| **Database**          | `DATABASE_URL`                       | PostgreSQL connection string (Supabase or Neon recommended)  |
+|                       | `DIRECT_URL`                         | Direct DB connection for Prisma migrations                   |
+| **NextAuth / Google** | `NEXTAUTH_SECRET`                    | Secure random string generated via `openssl rand -base64 32` |
+|                       | `NEXTAUTH_URL`                       | Your production domain (e.g. `https://my-app.vercel.app`)    |
+|                       | `GOOGLE_CLIENT_ID`                   | Google Cloud Console OAuth 2.0 Client ID                     |
+|                       | `GOOGLE_CLIENT_SECRET`               | Google Cloud Console OAuth 2.0 Client Secret                 |
+| **Stripe Billing**    | `STRIPE_SECRET_KEY`                  | Stripe secret key (starting with `sk_live_` or `sk_test_`)   |
+|                       | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe public key (`pk_live_` or `pk_test_`)                 |
+|                       | `STRIPE_WEBHOOK_SECRET`              | Webhook secret for resolving credit purchases                |
+| **AI Generator**      | `NANO_BANANA_API_KEY`                | API Key for the underlying generative AI engine route        |
+
+### 🚀 Launching on Vercel: Step-by-Step
+
+1. **Database Provisioning**: Create a new Postgres database (via completely free tiers on Vercel Postgres, Supabase, or Neon). Retrieve the pooling connection string (`DATABASE_URL`) and direct connection string (`DIRECT_URL`).
+2. **Project Creation**: Import your GitHub fork into the Vercel dashboard.
+3. **Configure Environment Variables**: Copy the variables above into the Vercel project settings environment tab.
+4. **Deploy**: Hit "Deploy". Vercel will automatically run the build steps (`npm run build`).
+5. **Database Push**: Since Prisma does not automatically migrate via Vercel builds by default, you may want to append `npx prisma db push && ` to your Vercel build command, or manually run it locally pointing to your production database URL.
+6. **Integrations Setup**:
+   - Establish a **Google Cloud OAuth app**, enabling the callback URL: `https://your-app.vercel.app/api/auth/callback/google`
+   - Setup a **Stripe Webhook**, pointing to `https://your-app.vercel.app/api/stripe/webhook` and selecting the `checkout.session.completed` event to grab your webhook signing secret.
+
+---
+
+## 🛠️ Local Development
+
+Ready to iterate locally? Setup is straightforward.
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/) (v18 or higher)
+- A local PostgreSQL instance or a free cloud Database URL.
+
+### Setup
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/SamurAIGPT/nano-banana-generator
+cd nano-banana-generator
+
+# 2. Install dependencies
+npm install
+
+# 3. Setup Environment
+cp .env.example .env
+# Open .env and insert your specific keys. You can use a local DB or your dev cloud DB.
+
+# 4. Initialize Database Schema
+npx prisma generate
+npx prisma db push
+
+# 5. Start the Development Server
+npm run dev
+```
+
+The graphical console should now be heavily responsive on `http://localhost:3000`.
+
+## 🏗️ Technical Architecture
+
+This application decouples visually rich UI elements from core business logic layers, emphasizing modularization.
+
+```
+nano-banana-generator/
+├── prisma/
+│   └── schema.prisma           # Postgres tables: Users, Accounts, Creations
+├── src/
+│   ├── app/                    # Next.js 14 App Router
+│   │   ├── api/                # Backend API Routes (Stripe, Banana AI, Auth, Uploads)
+│   │   ├── creations/          # User's historical web app generations archive
+│   │   ├── pricing/            # Interactive tier and credit purchase view
+│   │   └── page.js             # Main AI Generation Engine Interface
+│   ├── components/
+│   │   └── saas/               # Reusable Modular UI Components
+│   │       ├── AuthButtons.jsx # Reusable secure auth workflows
+│   │       └── Navbar.jsx      # Sticky, responsive global navigation
+│   └── lib/
+│       ├── prisma.js           # Shared ORM client singleton
+│       └── utils.js            # Image array manipulation, downloading tools
+├── next.config.mjs             # Next Configuration
+├── tailwind.config.js          # Project theme specs
+└── package.json
+```
+
+## 📄 License
+
+MIT Licensed.
+
+---
+
+_Nano Banana Generator: A modular, mobile-ready, production-grade AI web application engine built for creators and builders._
