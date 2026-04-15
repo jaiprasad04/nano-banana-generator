@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import { motion } from "framer-motion";
 import { FaBolt, FaCoins, FaCheckCircle, FaStar } from "react-icons/fa";
 import { useRouter } from "next/navigation";
@@ -55,7 +55,7 @@ export default function PricingPage() {
 
   const handleCheckout = async (price, credits, tierName) => {
     if (status !== "authenticated") {
-      router.push("/");
+      signIn();
       return;
     }
 

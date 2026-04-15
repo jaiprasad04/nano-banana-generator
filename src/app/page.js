@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import { useState, useRef, useEffect } from "react";
 import {
   FaBolt,
@@ -108,6 +108,11 @@ export default function Home() {
       return;
     }
 
+    if (!session) {
+      signIn();
+      return;
+    }
+
     if (file.size > 5 * 1024 * 1024) {
       setError("File size exceeds 5MB limit.");
       return;
@@ -149,7 +154,7 @@ export default function Home() {
   const handleGenerate = async () => {
     // Guest Guard
     if (!session) {
-      setError("AUTHENTICATION REQUIRED. PLEASE SIGN IN TO MANIFEST PIXELS.");
+      signIn();
       return;
     }
 
@@ -313,7 +318,13 @@ export default function Home() {
                     onChange={handleFileUpload}
                   />
                   <button
-                    onClick={() => fileInputRef.current?.click()}
+                    onClick={() => {
+                      if (!session) {
+                        signIn();
+                        return;
+                      }
+                      fileInputRef.current?.click();
+                    }}
                     disabled={isUploading || imagesList.length >= 14}
                     className="w-10 h-10 bg-primary-500/10 border border-primary-500/10 text-primary-500 rounded-lg flex items-center justify-center hover:bg-primary-500 hover:text-white transition-all"
                     title="Upload Local File"
@@ -321,7 +332,7 @@ export default function Home() {
                     {isUploading ? (
                       <div className="w-4 h-4 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" />
                     ) : (
-                      <FaImages className="text-xs" />
+                      <FaPlus className="text-lg group-hover:scale-110 transition-transform" />
                     )}
                   </button>
                   <button
