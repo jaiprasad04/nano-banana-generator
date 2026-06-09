@@ -4,6 +4,7 @@
  */
 
 const config = {
+  appName: "Nano Banana Template",
   auth: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
